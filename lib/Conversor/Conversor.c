@@ -27,11 +27,11 @@ ADC1->CR2|= ADC_CR2_EXTSEL;
 }
 
 
-uint16_t adc_read(unsigned int canal, unsigned int v_ref){
+uint16_t adc_read(unsigned int canal){
     int canal;
  ADC1->SMPR2|=(0b111<<(canal * 3));
  ADC1 ->SQR3 |= (canal);
-    int V_ref= (ADC1->DR/4095)* 3.3;
+   
     ADC1->SR |=ADC_SR_EOC;
     while (!(ADC1->SR &ADC_SR_EOC))
     {
